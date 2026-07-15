@@ -1,9 +1,13 @@
-# E4916A / E4915A Firmware Loader
+# E4916A / E4915A Firmware Updater
 
 A menu-driven Python tool for the **Agilent/HP E4916A** and **E4915A Crystal
 Impedance Meters**. It uploads manufacturer firmware to the instrument's resident
 `DOWNLOAD-CALGAMO` bootloader over GPIB, and enables or disables licensed
 instrument options — for maintaining your own long-discontinued hardware.
+Keysight no longer provide a way to update firmware in these instruments, so
+with the help of Claude, I (well, Claude) have reverse engineered the firmware etc
+and written this script to do the job.
+Don't hate me for using AI, I am a hardware engineer, definitely NOT a coder... lol
 
 The GPIB protocol, bootloader behaviour, download-mode entry, and option record
 were reverse-engineered from the boot EPROM and the main firmware image; see
