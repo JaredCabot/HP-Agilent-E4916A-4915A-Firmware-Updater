@@ -3,7 +3,7 @@
 A menu-driven Python tool for the **Agilent/HP E4916A** and **E4915A Crystal
 Impedance Meters**. It uploads manufacturer firmware to the instrument's resident
 `DOWNLOAD-CALGAMO` bootloader over GPIB, and enables or disables licensed
-instrument options — for maintaining your own long-discontinued hardware.
+instrument options - for maintaining your own long-discontinued hardware.
 Keysight no longer provide a way to update firmware in these instruments, so
 with the help of Claude, I (well, Claude) have reverse engineered the firmware etc
 and written this script to do the job.
@@ -14,7 +14,7 @@ were reverse-engineered from the boot EPROM and the main firmware image; see
 [`E4916A_debug_findings.md`](E4916A_debug_findings.md) for the full write-up.
 
 > [!WARNING]
-> **Unofficial tool — use at your own risk on equipment you own.** Reprogramming
+> **Unofficial tool - use at your own risk on equipment you own.** Reprogramming
 > firmware and editing the option record are inherently risky operations.
 > Firmware upload is *recoverable by design* (see [Recoverability](#recoverability-why-this-is-safe)),
 > but read the safety notes before you start.
@@ -30,10 +30,10 @@ were reverse-engineered from the boot EPROM and the main firmware image; see
 - [Quick start](#quick-start)
 - [The menu](#the-menu)
   - [Startup: auto-connect](#startup-auto-connect)
-  - [1 — Scan for instrument](#1--scan-for-instrument)
-  - [2 — Upload firmware](#2--upload-firmware)
-  - [3 — Enable / disable options](#3--enable--disable-options)
-  - [4 — Show procedure / help](#4--show-procedure--help)
+  - [1 - Scan for instrument](#1--scan-for-instrument)
+  - [2 - Upload firmware](#2--upload-firmware)
+  - [3 - Enable / disable options](#3--enable--disable-options)
+  - [4 - Show procedure / help](#4--show-procedure--help)
 - [Entering download mode (the "5" key)](#entering-download-mode-the-5-key)
 - [GPIB address in download mode](#gpib-address-in-download-mode)
 - [Instrument options reference](#instrument-options-reference)
@@ -53,7 +53,7 @@ were reverse-engineered from the boot EPROM and the main firmware image; see
   the current record first and preserving the model, serial, and untouched
   fields.
 - **Auto-discovery** of the instrument on the GPIB bus at startup.
-- **Recoverable by design** — the bootloader lives in a separate EPROM the tool
+- **Recoverable by design** - the bootloader lives in a separate EPROM the tool
   never touches, so a failed upload cannot brick the unit.
 
 ## How it works
@@ -61,8 +61,8 @@ were reverse-engineered from the boot EPROM and the main firmware image; see
 The E4916A/E4915A contains a small **boot EPROM** (separate from the main program
 flash). Held-key-at-power-on selects one of two paths:
 
-- **Normal mode** — runs the main firmware; answers SCPI (`*IDN?`, options, etc.).
-- **Download mode** — a raw byte-stream loader that receives a firmware image over
+- **Normal mode** - runs the main firmware; answers SCPI (`*IDN?`, options, etc.).
+- **Download mode** - a raw byte-stream loader that receives a firmware image over
   GPIB and programs it to flash.
 
 This tool talks to the instrument in **both** modes: SCPI in normal mode (scanning
@@ -73,7 +73,7 @@ and options), and the raw download protocol in download mode (firmware upload).
 | Requirement | Notes |
 | --- | --- |
 | **Python 3.7+** | No third-party packages needed for the menu itself. |
-| **PyVISA** | `pip install pyvisa` — used for all GPIB I/O. |
+| **PyVISA** | `pip install pyvisa` - used for all GPIB I/O. |
 | **A VISA backend** | NI-VISA, Keysight IO Libraries Suite, **or** `pip install pyvisa-py`. |
 | **A VISA-compatible GPIB adapter** | e.g. Keysight 82357B, NI GPIB-USB-HS. |
 | **The firmware image** | The manufacturer file `fw-0213.m` (2.13), placed next to the script. |
@@ -99,7 +99,7 @@ and options), and the raw download protocol in download mode (firmware upload).
    `E491xA_Firmware_Updater.py` (this is the default the upload option offers).
 
 4. Run it from a real terminal (Command Prompt / PowerShell / a shell), **not**
-   from IDLE — the in-place progress bar relies on a proper terminal:
+   from IDLE - the in-place progress bar relies on a proper terminal:
 
    ```bash
    python E491xA_Firmware_Updater.py
@@ -140,9 +140,9 @@ On launch the tool scans the GPIB bus (normal mode) for an E4916A/E4915A.
 
 The discovered resource is reused for normal-mode actions. For firmware upload it
 automatically switches to **GPIB primary address 17** on the same bus (the
-bootloader always listens there — see [below](#gpib-address-in-download-mode)).
+bootloader always listens there - see [below](#gpib-address-in-download-mode)).
 
-### 1 — Scan for instrument
+### 1 - Scan for instrument
 
 Rescans the bus and remembers the first E4916A/E4915A it finds. Useful to confirm
 which bus/address your adapter presents.
@@ -152,7 +152,7 @@ which bus/address your adapter presents.
 > already in **download** mode will not be found (and must not be probed while a
 > transfer is expected).
 
-### 2 — Upload firmware
+### 2 - Upload firmware
 
 Guided, safe firmware upload. Typical session:
 
@@ -189,7 +189,7 @@ Image sent. Reboot instrument
 
 Step by step:
 
-1. **Choose the image** — press Enter for the default `fw-0213.m`, or type a path.
+1. **Choose the image** - press Enter for the default `fw-0213.m`, or type a path.
 2. **CRC check** runs automatically; the upload aborts if it fails.
 3. **Enter download mode** on the instrument (power OFF → hold **"5"** → power ON).
    Confirm it is showing the `BOOTROM REV:xx.xx` banner.
@@ -202,7 +202,7 @@ Step by step:
 > If the upload fails or is interrupted, the instrument **stays in the
 > bootloader**. Just re-enter download mode and run the upload again.
 
-### 3 — Enable / disable options
+### 3 - Enable / disable options
 
 Reads the instrument's identity/option record, lets you toggle options, and writes
 it back. The model, serial number, and any groups you don't touch are always
@@ -254,13 +254,13 @@ Power-cycle the instrument for the change to take effect.
 > the instrument may reject it. Full LCR operation also needs the Option 001
 > impedance-probe hardware.
 
-### 4 — Show procedure / help
+### 4 - Show procedure / help
 
 Prints the firmware-update and option procedures for quick reference.
 
 ## Entering download mode (the "5" key)
 
-Download mode is a **physical power-on condition** — there is no software command
+Download mode is a **physical power-on condition** - there is no software command
 to enter it.
 
 1. Power the instrument **OFF**.
@@ -272,7 +272,7 @@ to enter it.
 To leave download mode, simply power-cycle **without** holding "5".
 
 > [!TIP]
-> This is non-destructive to test — if "5"-at-power-on doesn't show the boot
+> This is non-destructive to test - if "5"-at-power-on doesn't show the boot
 > banner, nothing happens and the unit boots normally.
 
 ## GPIB address in download mode
@@ -291,7 +291,7 @@ The option record is six comma-separated, individually quoted fields:
 | --- | --- | --- | --- |
 | `010` | g1 | **LCR Meter Function** | E4916A only; full LCR also needs the Opt 001 impedance-probe hardware. |
 | `S01` | g4 | **EM / Evaporation Monitor Mode** | Thin-film deposition monitoring. |
-| `P01` | g3 | Power Range | **Not supported by this tool — do not enable.** |
+| `P01` | g3 | Power Range | **Not supported by this tool - do not enable.** |
 
 > [!WARNING]
 > **Do not enable `P01` (Power Range).** On these units it causes
@@ -303,7 +303,7 @@ The option record is six comma-separated, individually quoted fields:
 
 The bootloader lives in a **separate EPROM** that the firmware-upload path never
 writes to. If a download fails or is interrupted, the loader reports the error and
-**stays resident** — re-enter download mode and retry. A firmware upload cannot
+**stays resident** - re-enter download mode and retry. A firmware upload cannot
 brick the unit.
 
 > [!CAUTION]
