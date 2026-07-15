@@ -72,7 +72,7 @@ and options), and the raw download protocol in download mode (firmware upload).
 | **PyVISA** | `pip install pyvisa` — used for all GPIB I/O. |
 | **A VISA backend** | NI-VISA, Keysight IO Libraries Suite, **or** `pip install pyvisa-py`. |
 | **A VISA-compatible GPIB adapter** | e.g. Keysight 82357B, NI GPIB-USB-HS. |
-| **The firmware image** | The manufacturer file `fw-0213.m` (2.13), placed next to the script. Not distributed here. |
+| **The firmware image** | The manufacturer file `fw-0213.m` (2.13), placed next to the script. |
 
 > [!NOTE]
 > The script runs and shows its menu without PyVISA installed, but any action that
@@ -98,7 +98,7 @@ and options), and the raw download protocol in download mode (firmware upload).
    from IDLE — the in-place progress bar relies on a proper terminal:
 
    ```bash
-   python E4916A_firmware_loader.py
+   python E491xA_firmware_Updater.py
    ```
 
 ## Quick start
