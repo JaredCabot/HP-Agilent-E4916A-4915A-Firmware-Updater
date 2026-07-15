@@ -324,9 +324,9 @@ brick the unit.
 
 | File | Purpose |
 | --- | --- |
-| `E4916A_firmware_loader.py` | The tool (run this). |
+| `E491xA_firmware_Updater.py` | The tool (run this). |
 | `E4916A_debug_findings.md` | Reverse-engineering findings: protocol, bootloader, options. |
-| `fw-0213.m` | Manufacturer firmware image (2.13). **You supply this** — place it next to the script. |
+| `fw-0213.m` | Manufacturer firmware image (2.13). Place it next to the script. |
 
 ## Disclaimer
 
