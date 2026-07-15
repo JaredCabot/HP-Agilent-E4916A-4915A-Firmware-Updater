@@ -92,13 +92,13 @@ and options), and the raw download protocol in download mode (firmware upload).
 2. Confirm your GPIB adapter is installed and visible to VISA.
 
 3. Put the firmware image **`fw-0213.m`** in the **same folder** as
-   `E491xA_firmware_updater.py` (this is the default the upload option offers).
+   `E491xA_Firmware_Updater.py` (this is the default the upload option offers).
 
 4. Run it from a real terminal (Command Prompt / PowerShell / a shell), **not**
    from IDLE — the in-place progress bar relies on a proper terminal:
 
    ```bash
-   python E491xA_firmware_Updater.py
+   python E491xA_Firmware_Updater.py
    ```
 
 ## Quick start
@@ -324,7 +324,7 @@ brick the unit.
 
 | File | Purpose |
 | --- | --- |
-| `E491xA_firmware_Updater.py` | The tool (run this). |
+| `E491xA_Firmware_Updater.py` | The tool (run this). |
 | `E4916A_debug_findings.md` | Reverse-engineering findings: protocol, bootloader, options. |
 | `fw-0213.m` | Manufacturer firmware image (2.13). Place it next to the script. |
 
