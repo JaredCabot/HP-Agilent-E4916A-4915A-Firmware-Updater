@@ -92,7 +92,7 @@ and options), and the raw download protocol in download mode (firmware upload).
 2. Confirm your GPIB adapter is installed and visible to VISA.
 
 3. Put the firmware image **`fw-0213.m`** in the **same folder** as
-   `E4916A_firmware_loader.py` (this is the default the upload option offers).
+   `E491xA_firmware_updater.py` (this is the default the upload option offers).
 
 4. Run it from a real terminal (Command Prompt / PowerShell / a shell), **not**
    from IDLE — the in-place progress bar relies on a proper terminal:
