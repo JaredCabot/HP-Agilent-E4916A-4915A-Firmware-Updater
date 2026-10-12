@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: README
+    url: https://github.com/JaredCabot/HP-Agilent-E4916A-4915A-Firmware-Updater#readme
+    about: The menu, download mode, recoverability and troubleshooting.
+  - name: Debug findings
+    url: https://github.com/JaredCabot/HP-Agilent-E4916A-4915A-Firmware-Updater/blob/main/E4916A_debug_findings.md
+    about: The reverse-engineered GPIB protocol, bootloader and option record.
